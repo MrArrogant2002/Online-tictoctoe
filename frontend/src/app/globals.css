@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom animations for game elements */
+.cell-hover:hover {
+  @apply bg-gray-100 dark:bg-gray-800 transition-colors duration-200;
+}
+
+.game-board {
+  @apply grid grid-cols-3 gap-1 bg-gray-300 dark:bg-gray-700 p-1 rounded-lg;
+}
+
+.cell {
+  @apply w-20 h-20 sm:w-24 sm:h-24 bg-white dark:bg-gray-900 flex items-center justify-center text-2xl sm:text-3xl font-bold cursor-pointer rounded transition-all duration-200;
+}
+
+.cell:disabled {
+  @apply cursor-not-allowed;
+}
+
+.player-x {
+  @apply text-blue-600;
+}
+
+.player-o {
+  @apply text-red-600;
+}
+
+.winning-cell {
+  @apply bg-green-200 dark:bg-green-800 animate-pulse-slow;
+}
