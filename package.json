@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node index.js",
     "install:backend": "cd backend && npm install",
     "install:frontend": "cd frontend && npm install",
     "install:all": "npm run install:backend && npm run install:frontend",
@@ -11,10 +10,6 @@
     "dev:frontend": "cd frontend && npm run dev",
     "start:backend": "cd backend && npm start",
     "build:frontend": "cd frontend && npm run build"
-  },
-  "dependencies": {
-    "socket.io": "^4.7.5",
-    "cors": "^2.8.5"
   },
   "description": "Online Tic-Tac-Toe game with Next.js frontend and Socket.IO backend",
   "keywords": ["tic-tac-toe", "multiplayer", "socket.io", "nextjs", "game"],
