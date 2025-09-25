@@ -58,17 +58,17 @@ body {
 
 /* Modern Game Board Styles */
 .game-board-modern {
-  @apply grid grid-cols-3 gap-3 p-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700;
+  @apply grid grid-cols-3 gap-3 p-4 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl border border-gray-700;
   perspective: 1000px;
 }
 
 .cell {
-  @apply w-20 h-20 sm:w-28 sm:h-28 bg-white dark:bg-gray-800 flex items-center justify-center cursor-pointer rounded-xl transition-all duration-300 border-2 border-gray-200 dark:border-gray-600 shadow-md hover:shadow-lg;
+  @apply w-20 h-20 sm:w-28 sm:h-28 bg-gray-800 flex items-center justify-center cursor-pointer rounded-xl transition-all duration-300 border-2 border-gray-600 shadow-md hover:shadow-lg;
   transform-style: preserve-3d;
 }
 
 .cell:hover:not(:disabled) {
-  @apply border-blue-300 dark:border-blue-500 shadow-xl;
+  @apply border-blue-500 shadow-xl;
   transform: translateY(-2px);
 }
 
@@ -81,14 +81,14 @@ body {
 }
 
 .winning-cell {
-  @apply bg-gradient-to-br from-green-100 to-green-200 dark:from-green-800 dark:to-green-900 border-green-400 dark:border-green-500;
+  @apply bg-gradient-to-br from-green-800 to-green-900 border-green-500;
   animation: pulse-slow 1.5s ease-in-out infinite;
   box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
 }
 
 /* Enhanced card styles */
 .card-modern {
-  @apply bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 backdrop-blur-sm;
+  @apply bg-gray-800 rounded-2xl shadow-xl border border-gray-700 backdrop-blur-sm;
   background: rgba(255, 255, 255, 0.95);
 }
 
@@ -124,7 +124,7 @@ body {
 
 /* Input field enhancements */
 .input-modern {
-  @apply w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100 transition-all duration-200 bg-white placeholder-gray-400;
+  @apply w-full px-4 py-3 border-2 border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 text-gray-100 transition-all duration-200 placeholder-gray-400;
 }
 
 .input-modern:focus {

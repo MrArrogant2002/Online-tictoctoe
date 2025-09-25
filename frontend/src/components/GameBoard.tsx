@@ -23,8 +23,8 @@ export default function GameBoard({ board, onCellClick, winningLine, disabled }:
       size: 40,
       className: `transition-all duration-300 ${
         cell === 'X' 
-          ? `text-blue-600 dark:text-blue-400 ${isWinner ? 'text-blue-800 dark:text-blue-200' : ''}` 
-          : `text-red-600 dark:text-red-400 ${isWinner ? 'text-red-800 dark:text-red-200' : ''}`
+          ? `text-blue-400 ${isWinner ? 'text-blue-200' : ''}` 
+          : `text-red-400 ${isWinner ? 'text-red-200' : ''}`
       }`
     }
     

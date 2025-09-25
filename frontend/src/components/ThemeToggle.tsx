@@ -5,21 +5,26 @@ import { motion } from 'framer-motion'
 import { Sun, Moon } from 'lucide-react'
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(true) // Default to dark mode
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Check for saved theme preference or default to system preference
-    const savedTheme = localStorage.getItem('theme')
-    const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-
-    if (savedTheme === 'dark' || (!savedTheme && systemDarkMode)) {
-      setIsDark(true)
-      document.documentElement.classList.add('dark')
-    } else {
-      setIsDark(false)
-      document.documentElement.classList.remove('dark')
-    }
+    // Set mounted to true after component mounts to prevent hydration issues
+    setMounted(true)
+    
+    // Always set dark mode as default
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('theme', 'dark')
   }, [])
+
+  // Don't render anything until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="fixed top-6 right-6 z-50 p-3 bg-gray-800 rounded-full shadow-lg border border-gray-700 w-12 h-12">
+        <Moon className="w-6 h-6 text-gray-400" />
+      </div>
+    )
+  }
 
   const toggleTheme = () => {
     const newTheme = !isDark
@@ -37,26 +42,28 @@ export default function ThemeToggle() {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300"
+      className="fixed top-6 right-6 z-50 p-3 bg-gray-800 rounded-full shadow-lg border border-gray-700 hover:shadow-xl transition-all duration-300"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3, delay: 0.1 }}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
       <motion.div
         initial={false}
         animate={{ 
-          rotate: isDark ? 360 : 0,
-          scale: [1, 0.8, 1]
+          rotate: isDark ? 0 : 180
         }}
         transition={{ 
-          duration: 0.5,
+          duration: 0.3,
           ease: "easeInOut"
         }}
       >
         {isDark ? (
-          <Sun className="w-6 h-6 text-yellow-500" />
+          <Moon className="w-6 h-6 text-gray-400" />
         ) : (
-          <Moon className="w-6 h-6 text-gray-700" />
+          <Sun className="w-6 h-6 text-yellow-500" />
         )}
       </motion.div>
     </motion.button>

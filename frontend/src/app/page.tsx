@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Users, Play, UserPlus, Gamepad2, Zap, Shield, Globe } from 'lucide-react'
-import ThemeToggle from '@/components/ThemeToggle'
 
 export default function Home() {
   const [roomCode, setRoomCode] = useState('')
@@ -52,7 +51,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 relative overflow-hidden">
       
       {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -112,7 +111,7 @@ export default function Home() {
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
                   Online XOX
                 </h1>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mt-2">
+                <p className="text-xl text-gray-400 mt-2">
                   The Ultimate Tic-Tac-Toe Experience
                 </p>
               </div>
@@ -125,40 +124,40 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              <div className="flex items-center gap-3 p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/50">
+              <div className="flex items-center gap-3 p-4 bg-gray-800/60 backdrop-blur-sm rounded-2xl border border-gray-700/50">
                 <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 dark:text-gray-200">Real-time</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Instant gameplay</p>
+                  <h3 className="font-semibold text-gray-200">Real-time</h3>
+                  <p className="text-sm text-gray-400">Instant gameplay</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/50">
+              <div className="flex items-center gap-3 p-4 bg-gray-800/60 backdrop-blur-sm rounded-2xl border border-gray-700/50">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center">
                   <Globe className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 dark:text-gray-200">Global</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Play anywhere</p>
+                  <h3 className="font-semibold text-gray-200">Global</h3>
+                  <p className="text-sm text-gray-400">Play anywhere</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/50">
+              <div className="flex items-center gap-3 p-4 bg-gray-800/60 backdrop-blur-sm rounded-2xl border border-gray-700/50">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 dark:text-gray-200">Secure</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Safe & private</p>
+                  <h3 className="font-semibold text-gray-200">Secure</h3>
+                  <p className="text-sm text-gray-400">Safe & private</p>
                 </div>
               </div>
             </motion.div>
 
             {/* Description */}
             <motion.p 
-              className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8"
+              className="text-lg text-gray-300 leading-relaxed mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
@@ -179,7 +178,7 @@ export default function Home() {
                 <Play className="w-6 h-6" />
                 Get Started
               </button>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-gray-400">
                 No registration required
               </div>
             </motion.div>
@@ -187,14 +186,14 @@ export default function Home() {
         </div>
 
         {/* Right Side - Game Form */}
-        <div className="flex-1 flex items-center justify-center p-8 lg:p-16 min-h-[50vh] lg:min-h-screen lg:border-l border-white/20 dark:border-gray-700/50">
+        <div className="flex-1 flex items-center justify-center p-8 lg:p-16 min-h-[50vh] lg:min-h-screen lg:border-l border-gray-700/50">
           <motion.div 
             className="w-full max-w-md"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50 p-8">
+            <div className="bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-700/50 p-8">
               <motion.div 
                 className="text-center mb-8"
                 initial={{ opacity: 0, y: -20 }}
@@ -204,10 +203,10 @@ export default function Home() {
                 <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl flex items-center justify-center">
                   <Gamepad2 className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
+                <h2 className="text-2xl font-bold text-gray-100 mb-2">
                   Start Playing
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-400">
                   Enter your name and join the game
                 </p>
               </motion.div>
@@ -220,7 +219,7 @@ export default function Home() {
               >
                 {/* Player Name Input */}
                 <div>
-                  <label htmlFor="playerName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
+                  <label htmlFor="playerName" className="block text-sm font-medium text-gray-300 mb-3 flex items-center gap-2">
                     <Users className="w-4 h-4" />
                     Your Name
                   </label>
@@ -265,16 +264,16 @@ export default function Home() {
                 {/* Divider */}
                 <div className="relative my-8">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                    <div className="w-full border-t border-gray-600"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-4 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-medium">or</span>
+                    <span className="px-4 bg-gray-800 text-gray-400 font-medium">or</span>
                   </div>
                 </div>
 
                 {/* Join Game Section */}
                 <div>
-                  <label htmlFor="roomCode" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
+                  <label htmlFor="roomCode" className="block text-sm font-medium text-gray-300 mb-3 flex items-center gap-2">
                     <UserPlus className="w-4 h-4" />
                     Room Code
                   </label>
@@ -318,7 +317,7 @@ export default function Home() {
                 {/* Error Message */}
                 {error && (
                   <motion.div 
-                    className="bg-red-100 dark:bg-red-900/50 border border-red-400 dark:border-red-600 text-red-700 dark:text-red-300 px-4 py-3 rounded-2xl text-sm backdrop-blur-sm"
+                    className="bg-red-900/50 border border-red-600 text-red-300 px-4 py-3 rounded-2xl text-sm backdrop-blur-sm"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
@@ -330,41 +329,41 @@ export default function Home() {
 
               {/* Enhanced Game Rules */}
               <motion.div 
-                className="mt-8 p-6 bg-gradient-to-br from-blue-50/80 to-indigo-100/80 dark:from-gray-700/80 dark:to-gray-800/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 dark:border-gray-600/50"
+                className="mt-8 p-6 bg-gradient-to-br from-gray-700/80 to-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-600/50"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.6 }}
               >
-                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-bold text-gray-200 mb-4 flex items-center gap-2">
                   🎯 How to Play
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl flex items-center justify-center text-sm font-bold">1</div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 dark:text-gray-200 text-sm">Create or Join</h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">Start a new game or join with a code</p>
+                      <h4 className="font-semibold text-gray-200 text-sm">Create or Join</h4>
+                      <p className="text-xs text-gray-400">Start a new game or join with a code</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl flex items-center justify-center text-sm font-bold">2</div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 dark:text-gray-200 text-sm">Share & Play</h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">Send room code to friends</p>
+                      <h4 className="font-semibold text-gray-200 text-sm">Share & Play</h4>
+                      <p className="text-xs text-gray-400">Send room code to friends</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl flex items-center justify-center text-sm font-bold">3</div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 dark:text-gray-200 text-sm">Take Turns</h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">X goes first, then O</p>
+                      <h4 className="font-semibold text-gray-200 text-sm">Take Turns</h4>
+                      <p className="text-xs text-gray-400">X goes first, then O</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 text-white rounded-xl flex items-center justify-center text-sm font-bold">4</div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 dark:text-gray-200 text-sm">Win! 🏆</h4>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">Get 3 in a row to victory</p>
+                      <h4 className="font-semibold text-gray-200 text-sm">Win! 🏆</h4>
+                      <p className="text-xs text-gray-400">Get 3 in a row to victory</p>
                     </div>
                   </div>
                 </div>
