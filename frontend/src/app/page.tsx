@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Users, Play, UserPlus, Gamepad2, Zap, Shield, Globe } from 'lucide-react'
+import { Users, Play, UserPlus, Gamepad2, Zap, Shield, Globe, Sparkles } from 'lucide-react'
+import PerformanceMonitor from '@/components/PerformanceMonitor'
 
 export default function Home() {
   const [roomCode, setRoomCode] = useState('')
@@ -52,14 +53,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 relative overflow-hidden">
+      <PerformanceMonitor />
       
-      {/* Background Decorations */}
+      {/* Enhanced Background Decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated background orbs */}
         <motion.div
-          className="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"
+          className="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full blur-3xl will-change-transform"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
           }}
           transition={{
             duration: 20,
@@ -68,10 +73,12 @@ export default function Home() {
           }}
         />
         <motion.div
-          className="absolute -bottom-4 -left-4 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"
+          className="absolute -bottom-4 -left-4 w-96 h-96 bg-gradient-to-br from-purple-400/30 to-pink-400/30 rounded-full blur-3xl will-change-transform"
           animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0],
+            x: [0, -40, 0],
+            y: [0, 40, 0],
           }}
           transition={{
             duration: 25,
@@ -79,6 +86,27 @@ export default function Home() {
             ease: "linear"
           }}
         />
+        
+        {/* Floating particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-white/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative z-10 min-h-screen flex flex-col lg:flex-row">
@@ -98,22 +126,48 @@ export default function Home() {
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               <motion.div 
-                className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-700 rounded-3xl flex items-center justify-center shadow-2xl"
+                className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-700 rounded-3xl flex items-center justify-center shadow-2xl will-change-transform relative overflow-hidden group"
                 whileHover={{ 
                   rotate: [0, -10, 10, -10, 0],
                   scale: 1.05 
                 }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="text-4xl font-bold text-white">XO</span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="text-4xl font-bold text-white relative z-10">XO</span>
+                <motion.div
+                  className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Sparkles size={12} className="text-yellow-300" />
+                </motion.div>
               </motion.div>
               <div>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+                <motion.h1 
+                  className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight"
+                  animate={{ 
+                    backgroundPosition: ['0%', '100%', '0%'] 
+                  }}
+                  transition={{ 
+                    duration: 8, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                >
                   Online XOX
-                </h1>
-                <p className="text-xl text-gray-400 mt-2">
+                </motion.h1>
+                <motion.p 
+                  className="text-xl text-gray-300 mt-2 font-medium"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                >
                   The Ultimate Tic-Tac-Toe Experience
-                </p>
+                </motion.p>
               </div>
             </motion.div>
 

@@ -86,20 +86,31 @@ export default function GameBoard({ board, onCellClick, winningLine, disabled }:
             aria-label={`Cell ${index + 1}${cell ? `, contains ${cell}` : ', empty'}`}
             whileHover={!disabled && cell === null ? { 
               scale: 1.05, 
-              backgroundColor: '#f3f4f6',
+              backgroundColor: '#4f46e5',
+              boxShadow: '0 8px 25px rgba(79, 70, 229, 0.3)',
               transition: { duration: 0.2 } 
             } : {}}
             whileTap={!disabled && cell === null ? { 
               scale: 0.95,
               transition: { duration: 0.1 }
             } : {}}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: index * 0.05 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              delay: index * 0.05,
+              type: "spring",
+              stiffness: 300,
+              damping: 20
+            }}
           >
-            <div className="flex items-center justify-center h-full">
+            <motion.div 
+              className="flex items-center justify-center h-full will-change-transform"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.05 + 0.1 }}
+            >
               {getCellContent(cell, index)}
-            </div>
+            </motion.div>
           </motion.button>
         ))}
       </motion.div>
