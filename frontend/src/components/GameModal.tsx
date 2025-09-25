@@ -83,14 +83,14 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
   return (
     <AnimatePresence>
       <motion.div 
-        className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 backdrop-blur-sm"
+        className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 backdrop-blur-sm mobile-safe-area"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
         <motion.div 
-          className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 w-full max-w-lg border border-gray-200 dark:border-gray-700"
+          className="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 w-full max-w-sm sm:max-w-lg border border-gray-200 dark:border-gray-700"
           initial={{ scale: 0.7, opacity: 0, y: 50 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.7, opacity: 0, y: 50 }}
@@ -100,16 +100,16 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
             {/* Close Button */}
             <motion.button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors touch-target"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <CloseIcon size={20} className="text-gray-600 dark:text-gray-400" />
+              <CloseIcon size={18} className="text-gray-600 dark:text-gray-400" />
             </motion.button>
 
             {/* Result Emoji with Animation */}
             <motion.div 
-              className="text-8xl mb-6"
+              className="text-6xl sm:text-8xl mb-4 sm:mb-6"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ 
@@ -124,7 +124,7 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
 
             {/* Result Message with Gradient */}
             <motion.h2 
-              className={`text-4xl font-bold mb-4 bg-gradient-to-r ${getResultColor()} bg-clip-text text-transparent`}
+              className={`text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 bg-gradient-to-r ${getResultColor()} bg-clip-text text-transparent`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
@@ -134,7 +134,7 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
 
             {/* Result Description */}
             <motion.p 
-              className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed"
+              className="text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 text-base sm:text-lg leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
@@ -144,37 +144,37 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
 
             {/* Enhanced Game Statistics */}
             <motion.div 
-              className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-2xl p-6 mb-8 border border-gray-200 dark:border-gray-600"
+              className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-200 dark:border-gray-600"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.4 }}
             >
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <Users size={20} className="text-gray-600 dark:text-gray-400" />
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+              <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
+                <Users size={18} className="text-gray-600 dark:text-gray-400" />
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200">
                   Game Summary
                 </h3>
               </div>
               
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
                 <motion.div 
                   className="text-center"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg">
                     X
                   </div>
-                  <div className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
+                  <div className="font-semibold text-gray-800 dark:text-gray-200 mb-1 text-sm sm:text-base">
                     {players.X?.name || 'Unknown'}
                   </div>
                   {winner === 'X' && (
                     <motion.div 
-                      className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold bg-green-100 dark:bg-green-800 px-2 py-1 rounded-full text-sm"
+                      className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold bg-green-100 dark:bg-green-800 px-2 py-1 rounded-full text-xs sm:text-sm"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.8, type: "spring" }}
                     >
-                      <Trophy size={14} />
+                      <Trophy size={12} />
                       Winner!
                     </motion.div>
                   )}
@@ -184,20 +184,20 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
                   className="text-center"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg">
                     O
                   </div>
-                  <div className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
+                  <div className="font-semibold text-gray-800 dark:text-gray-200 mb-1 text-sm sm:text-base">
                     {players.O?.name || 'Unknown'}
                   </div>
                   {winner === 'O' && (
                     <motion.div 
-                      className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold bg-green-100 dark:bg-green-800 px-2 py-1 rounded-full text-sm"
+                      className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold bg-green-100 dark:bg-green-800 px-2 py-1 rounded-full text-xs sm:text-sm"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.8, type: "spring" }}
                     >
-                      <Trophy size={14} />
+                      <Trophy size={12} />
                       Winner!
                     </motion.div>
                   )}
@@ -207,27 +207,27 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
 
             {/* Action Buttons */}
             <motion.div 
-              className="flex gap-4 mb-6"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.4 }}
             >
               <motion.button
                 onClick={onPlayAgain}
-                className="flex-1 btn-success flex items-center justify-center gap-2"
+                className="flex-1 btn-success flex items-center justify-center gap-2 min-h-[48px] text-sm sm:text-base font-semibold py-3 px-4 rounded-xl transition-all duration-200 touch-target"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <RotateCcw size={18} />
+                <RotateCcw size={16} />
                 Play Again
               </motion.button>
               <motion.button
                 onClick={onClose}
-                className="flex-1 btn-secondary flex items-center justify-center gap-2"
+                className="flex-1 btn-secondary flex items-center justify-center gap-2 min-h-[48px] text-sm sm:text-base font-semibold py-3 px-4 rounded-xl transition-all duration-200 touch-target"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Target size={18} />
+                <Target size={16} />
                 Close
               </motion.button>
             </motion.div>
@@ -241,7 +241,7 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
             >
               <motion.button
                 onClick={copyRoomCode}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 touch-target ${
                   copySuccess 
                     ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100' 
                     : 'bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 hover:bg-blue-200 dark:hover:bg-blue-700'
@@ -249,7 +249,7 @@ export default function GameModal({ gameState, playerSymbol, onPlayAgain, onClos
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Copy size={16} />
+                <Copy size={14} />
                 {copySuccess ? '✓ Copied!' : `Share Room: ${gameState.roomCode}`}
               </motion.button>
             </motion.div>

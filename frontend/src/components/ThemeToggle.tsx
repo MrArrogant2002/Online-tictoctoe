@@ -37,7 +37,7 @@ export default function ThemeToggle() {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300"
+      className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 p-2.5 sm:p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 touch-target"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
@@ -54,9 +54,9 @@ export default function ThemeToggle() {
         }}
       >
         {isDark ? (
-          <Sun className="w-6 h-6 text-yellow-500" />
+          <Sun className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-500" />
         ) : (
-          <Moon className="w-6 h-6 text-gray-700" />
+          <Moon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
         )}
       </motion.div>
     </motion.button>
