@@ -1,3 +1,8 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { X, Circle } from 'lucide-react'
+
 interface GameBoardProps {
   board: (string | null)[]
   onCellClick: (position: number) => void
@@ -10,9 +15,33 @@ export default function GameBoard({ board, onCellClick, winningLine, disabled }:
     return winningLine && winningLine.includes(index)
   }
 
-  const getCellContent = (cell: string | null) => {
-    if (!cell) return ''
-    return cell
+  const getCellContent = (cell: string | null, index: number) => {
+    if (!cell) return null
+    
+    const isWinner = isWinningCell(index)
+    const iconProps = {
+      size: 40,
+      className: `transition-all duration-300 ${
+        cell === 'X' 
+          ? `text-blue-600 dark:text-blue-400 ${isWinner ? 'text-blue-800 dark:text-blue-200' : ''}` 
+          : `text-red-600 dark:text-red-400 ${isWinner ? 'text-red-800 dark:text-red-200' : ''}`
+      }`
+    }
+    
+    return (
+      <motion.div
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 260, 
+          damping: 20,
+          duration: 0.3 
+        }}
+      >
+        {cell === 'X' ? <X {...iconProps} /> : <Circle {...iconProps} />}
+      </motion.div>
+    )
   }
 
   const getCellClassName = (index: number) => {
@@ -42,33 +71,59 @@ export default function GameBoard({ board, onCellClick, winningLine, disabled }:
 
   return (
     <div className="flex flex-col items-center">
-      <div className="game-board">
+      <motion.div 
+        className="game-board-modern"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         {board.map((cell, index) => (
-          <button
+          <motion.button
             key={index}
             className={getCellClassName(index)}
             onClick={() => !disabled && cell === null && onCellClick(index)}
             disabled={disabled || cell !== null}
             aria-label={`Cell ${index + 1}${cell ? `, contains ${cell}` : ', empty'}`}
+            whileHover={!disabled && cell === null ? { 
+              scale: 1.05, 
+              backgroundColor: '#f3f4f6',
+              transition: { duration: 0.2 } 
+            } : {}}
+            whileTap={!disabled && cell === null ? { 
+              scale: 0.95,
+              transition: { duration: 0.1 }
+            } : {}}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: index * 0.05 }}
           >
-            <span className="select-none">
-              {getCellContent(cell)}
-            </span>
-          </button>
+            <div className="flex items-center justify-center h-full">
+              {getCellContent(cell, index)}
+            </div>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
       
-      {/* Game Legend */}
-      <div className="mt-6 flex space-x-6 text-sm text-gray-600 dark:text-gray-400">
-        <div className="flex items-center space-x-2">
-          <span className="w-4 h-4 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">X</span>
-          <span>Player X</span>
+      {/* Enhanced Game Legend */}
+      <motion.div 
+        className="mt-8 flex space-x-8 text-sm"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.3 }}
+      >
+        <div className="flex items-center space-x-3">
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center shadow-lg">
+            <X size={16} className="text-white" />
+          </div>
+          <span className="font-medium text-gray-700 dark:text-gray-300">Player X</span>
         </div>
-        <div className="flex items-center space-x-2">
-          <span className="w-4 h-4 bg-red-600 rounded text-white text-xs flex items-center justify-center font-bold">O</span>
-          <span>Player O</span>
+        <div className="flex items-center space-x-3">
+          <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center shadow-lg">
+            <Circle size={16} className="text-white" />
+          </div>
+          <span className="font-medium text-gray-700 dark:text-gray-300">Player O</span>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }

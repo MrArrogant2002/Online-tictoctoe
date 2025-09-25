@@ -285,20 +285,22 @@ function GameContent() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 w-full max-w-md text-center">
-          <div className="text-red-500 text-xl mb-4">⚠️</div>
-          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
-            Error
+      <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-red-900 flex items-center justify-center p-4">
+        <div className="card-modern p-8 w-full max-w-md text-center">
+          <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center">
+            <span className="text-3xl text-white">⚠️</span>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+            Connection Error
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
+          <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
             {error}
           </p>
           <button
             onClick={handleLeaveGame}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+            className="btn-primary px-8 py-3"
           >
-            Back to Home
+            🏠 Back to Home
           </button>
         </div>
       </div>
@@ -314,41 +316,52 @@ function GameContent() {
   }
 
   return (
-    <div className="min-h-screen p-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center">
-            <div className="text-center sm:text-left mb-4 sm:mb-0">
-              <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                Room: {roomCode}
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400">
-                Connection: <span className={`font-semibold ${
-                  connectionStatus === 'connected' ? 'text-green-600' : 
-                  connectionStatus === 'error' ? 'text-red-600' : 'text-yellow-600'
-                }`}>
-                  {connectionStatus}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 p-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Enhanced Header */}
+        <div className="card-modern p-6 mb-6">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div className="text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-700 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">XO</span>
+                </div>
+                <h1 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-700 bg-clip-text text-transparent">
+                  Room: {roomCode}
+                </h1>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-gray-600 dark:text-gray-400">
+                <div className={`w-3 h-3 rounded-full ${
+                  connectionStatus === 'connected' ? 'bg-green-500 animate-pulse' : 
+                  connectionStatus === 'error' ? 'bg-red-500' : 'bg-yellow-500 animate-pulse'
+                }`}></div>
+                <span className="text-sm">
+                  Connection: <span className={`font-semibold ${
+                    connectionStatus === 'connected' ? 'text-green-600' : 
+                    connectionStatus === 'error' ? 'text-red-600' : 'text-yellow-600'
+                  }`}>
+                    {connectionStatus}
+                  </span>
                 </span>
-              </p>
+              </div>
             </div>
             
-            <div className="flex space-x-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={copyRoomCode}
-                className={`font-semibold py-2 px-4 rounded-lg transition-all duration-200 ${
+                className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 ${
                   copySuccess 
-                    ? 'bg-green-600 hover:bg-green-700 text-white' 
-                    : 'bg-gray-600 hover:bg-gray-700 text-white'
+                    ? 'btn-success' 
+                    : 'btn-secondary'
                 }`}
               >
-                {copySuccess ? '✓ Copied!' : 'Copy Code'}
+                {copySuccess ? '✓ Copied!' : '📋 Copy Code'}
               </button>
               <button
                 onClick={handleLeaveGame}
-                className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                className="btn-danger"
               >
-                Leave Game
+                🚪 Leave Game
               </button>
             </div>
           </div>
@@ -361,7 +374,7 @@ function GameContent() {
         />
 
         {/* Game Board */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-6">
+        <div className="card-modern p-6 lg:p-8 mb-6">
           <GameBoard
             board={gameState.board}
             onCellClick={handleCellClick}
@@ -370,27 +383,38 @@ function GameContent() {
           />
         </div>
 
-        {/* Game Status */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 text-center">
+        {/* Enhanced Game Status */}
+        <div className="card-modern p-6 text-center">
           {gameState.gameStatus === 'waiting' && (
             <div>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
-                Waiting for another player to join...
-              </p>
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-4">
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                  Share this room code with your friend:
+              <div className="mb-6">
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">⏳</span>
+                </div>
+                <p className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
+                  Waiting for Player 2
                 </p>
-                <div className="flex items-center justify-center space-x-2">
-                  <span className="font-mono font-bold text-xl text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-800 px-4 py-2 rounded border">
-                    {roomCode}
-                  </span>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Share the room code to get started!
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-800 rounded-xl p-6 border border-blue-200 dark:border-gray-600">
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
+                  🔗 Share this room code with your friend:
+                </p>
+                <div className="flex items-center justify-center space-x-3">
+                  <div className="bg-white dark:bg-gray-800 px-6 py-3 rounded-xl border-2 border-blue-200 dark:border-gray-600 shadow-lg">
+                    <span className="font-mono font-bold text-2xl text-blue-600 dark:text-blue-400">
+                      {roomCode}
+                    </span>
+                  </div>
                   <button
                     onClick={copyRoomCode}
-                    className={`text-sm font-medium py-2 px-3 rounded transition-all duration-200 ${
+                    className={`px-4 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 ${
                       copySuccess 
-                        ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100' 
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500'
+                        ? 'btn-success' 
+                        : 'btn-primary'
                     }`}
                   >
                     {copySuccess ? '✓' : '📋'}
@@ -402,10 +426,19 @@ function GameContent() {
           
           {gameState.gameStatus === 'playing' && (
             <div>
-              <p className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+              <div className="mb-4">
+                <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl ${
+                  gameState.currentPlayer === playerSymbol 
+                    ? 'bg-gradient-to-br from-green-400 to-green-600 animate-pulse' 
+                    : 'bg-gradient-to-br from-yellow-400 to-orange-500'
+                }`}>
+                  {gameState.currentPlayer === playerSymbol ? '🎯' : '⏰'}
+                </div>
+              </div>
+              <p className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                 {gameState.currentPlayer === playerSymbol ? 
-                  "Your turn!" : 
-                  `Waiting for ${gameState.players[gameState.currentPlayer]?.name || gameState.currentPlayer}'s move...`
+                  "🚀 Your turn! Make your move" : 
+                  `⏳ Waiting for ${gameState.players[gameState.currentPlayer]?.name || gameState.currentPlayer}'s move...`
                 }
               </p>
             </div>
@@ -413,17 +446,28 @@ function GameContent() {
           
           {gameState.gameStatus === 'finished' && (
             <div>
-              <p className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
+              <div className="mb-6">
+                <div className={`w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-3xl ${
+                  gameState.winner 
+                    ? 'bg-gradient-to-br from-green-400 to-green-600' 
+                    : 'bg-gradient-to-br from-yellow-400 to-orange-500'
+                }`}>
+                  {gameState.winner ? '🏆' : '🤝'}
+                </div>
+              </div>
+              
+              <p className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">
                 {gameState.winner ? 
-                  `${gameState.players[gameState.winner]?.name || gameState.winner} wins!` : 
-                  "It's a draw!"
+                  `🎉 ${gameState.players[gameState.winner]?.name || gameState.winner} wins!` : 
+                  "🤝 It's a draw!"
                 }
               </p>
+              
               <button
                 onClick={handlePlayAgain}
-                className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+                className="btn-success text-lg px-8 py-3"
               >
-                Play Again
+                🔄 Play Again
               </button>
             </div>
           )}

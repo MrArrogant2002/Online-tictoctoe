@@ -11,6 +11,11 @@
     "build:production": "next build && next export"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.8",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.22",
+    "ldrs": "^1.1.7",
+    "lucide-react": "^0.544.0",
     "next": "15.5.3",
     "react": "^18",
     "react-dom": "^18",
