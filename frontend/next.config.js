@@ -7,10 +7,15 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  // Remove server-side features for static export
+  // Performance optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   experimental: {
-    // Enable experimental features if needed
-  }
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
+  // Set workspace root to silence warnings
+  outputFileTracingRoot: '/home/runner/work/Online-tictoctoe/Online-tictoctoe',
 }
 
 module.exports = nextConfig
